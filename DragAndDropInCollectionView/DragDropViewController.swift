@@ -29,7 +29,7 @@ class DragDropViewController: UIViewController
         self.collectionView1.dragInteractionEnabled = true
         self.collectionView1.dragDelegate = self
         self.collectionView1.dropDelegate = self
-        self.collectionView1.reorderingCadence = .fast
+        self.collectionView1.reorderingCadence = .immediate
         
         self.collectionView2.dragInteractionEnabled = true
         self.collectionView2.dropDelegate = self
