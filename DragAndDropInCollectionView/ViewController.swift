@@ -25,12 +25,13 @@ class ViewController: UIViewController
         self.collectionView2.dragInteractionEnabled = true
         self.collectionView2.dropDelegate = self
         self.collectionView2.dragDelegate = self
+        self.collectionView2.reorderingCadence = .fast
     }
     
     func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
     {
         let items = coordinator.items
-        if items.count == 1, let sourceIndexPath = items.first?.sourceIndexPath
+        if items.count == 1, let item = items.first, let sourceIndexPath = item.sourceIndexPath
         {
             var dIndexPath = destinationIndexPath
             if dIndexPath.row >= collectionView.numberOfItems(inSection: 0)
@@ -38,9 +39,8 @@ class ViewController: UIViewController
                 dIndexPath.row = collectionView.numberOfItems(inSection: 0) - 1
             }
             collectionView.performBatchUpdates({
-                let x = self.items2[sourceIndexPath.row]
                 self.items2.remove(at: sourceIndexPath.row)
-                self.items2.insert(x, at: dIndexPath.row)
+                self.items2.insert(item.dragItem.localObject as! String, at: dIndexPath.row)
                 collectionView.deleteItems(at: [sourceIndexPath])
                 collectionView.insertItems(at: [dIndexPath])
             })
@@ -50,17 +50,16 @@ class ViewController: UIViewController
     
     func copyItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
     {
-        coordinator.session.loadObjects(ofClass: NSString.self) { items in
-            let stringItems = items as! [String]
-            
+        collectionView.performBatchUpdates({
             var indexPaths = [IndexPath]()
-            for (index, item) in stringItems.enumerated() {
+            for (index, item) in coordinator.items.enumerated()
+            {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
-                self.items2.insert(item, at: indexPath.row)
+                self.items2.insert(item.dragItem.localObject as! String, at: indexPath.row)
                 indexPaths.append(indexPath)
             }
             collectionView.insertItems(at: indexPaths)
-        }
+        })
     }
 }
 
@@ -107,6 +106,13 @@ extension ViewController : UICollectionViewDragDelegate
         dragItem.localObject = item
         return [dragItem]
     }
+    
+    func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters?
+    {
+        let previewParameters = UIDragPreviewParameters()
+        previewParameters.visiblePath = UIBezierPath(rect: CGRect(x: 25, y: 25, width: 120, height: 120))
+        return previewParameters
+    }
 }
 
 extension ViewController : UICollectionViewDropDelegate
@@ -120,11 +126,11 @@ extension ViewController : UICollectionViewDropDelegate
     {
         if collectionView.hasActiveDrag
         {
-            return UICollectionViewDropProposal(operation: .move)
+            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
         else
         {
-            return UICollectionViewDropProposal(operation: .copy)
+            return UICollectionViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
         }
     }
     

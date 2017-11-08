@@ -70,14 +70,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="Pph-tY-PGX" customClass="CustomCell" customModule="DragAndDropInCollectionView" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="93" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chrome" translatesAutoresizingMaskIntoConstraints="NO" id="sdV-W7-Hkd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="93" height="95"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="95"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -87,6 +87,7 @@
                                             <constraint firstAttribute="bottom" secondItem="sdV-W7-Hkd" secondAttribute="bottom" id="Ljw-b9-Sp8"/>
                                             <constraint firstItem="sdV-W7-Hkd" firstAttribute="leading" secondItem="Pph-tY-PGX" secondAttribute="leading" id="kwQ-gl-6Bj"/>
                                         </constraints>
+                                        <size key="customSize" width="95" height="95"/>
                                         <connections>
                                             <outlet property="customImageView" destination="sdV-W7-Hkd" id="edM-S1-vkM"/>
                                         </connections>
