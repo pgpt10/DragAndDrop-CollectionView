@@ -26,18 +26,26 @@ class DragDropViewController: UIViewController
     {
         super.viewDidLoad()
         
+        //CollectionView-1 drag and drop configuration
         self.collectionView1.dragInteractionEnabled = true
         self.collectionView1.dragDelegate = self
         self.collectionView1.dropDelegate = self
-        self.collectionView1.reorderingCadence = .immediate
         
+        //CollectionView-2 drag and drop configuration
         self.collectionView2.dragInteractionEnabled = true
         self.collectionView2.dropDelegate = self
         self.collectionView2.dragDelegate = self
-        self.collectionView2.reorderingCadence = .fast
+        self.collectionView2.reorderingCadence = .fast //default value - .immediate
     }
     
     //MARK: Private Methods
+    
+    /// This method moves a cell from source indexPath to destination indexPath within the same collection view. It works for only 1 item. If multiple items selected, no reordering happens.
+    ///
+    /// - Parameters:
+    ///   - coordinator: coordinator obtained from performDropWith: UICollectionViewDropDelegate method
+    ///   - destinationIndexPath: indexpath of the collection view where the user drops the element
+    ///   - collectionView: collectionView in which reordering needs to be done.
     private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
     {
         let items = coordinator.items
@@ -66,6 +74,12 @@ class DragDropViewController: UIViewController
         }
     }
     
+    /// This method copies a cell from source indexPath in 1st collection view to destination indexPath in 2nd collection view. It works for multiple items.
+    ///
+    /// - Parameters:
+    ///   - coordinator: coordinator obtained from performDropWith: UICollectionViewDropDelegate method
+    ///   - destinationIndexPath: indexpath of the collection view where the user drops the element
+    ///   - collectionView: collectionView in which reordering needs to be done.
     private func copyItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
     {
         collectionView.performBatchUpdates({
