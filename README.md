@@ -4,13 +4,13 @@ With the release of iOS-11, Apple introduced Drag and Drop in UITableView and UI
 
 UITableView and UICollectionView have similar APIs to support Drag and Drop with some small differences. So, in this sample I'll be showing how you can integrate drag and drop in UICollectionView.
 
-#### This project provides Drag and Drop support in:
+### This project provides Drag and Drop support in:
 1. iPhone (In iPhone, Drag and Drop is supported only in the same app. In iPad, Drag and Drop is supported within multiple apps.)
 2. iOS 11
 3. Swift 4
 4. UICollectionView
 
-#### Project Describes:
+### Project Describes:
 1. UICollectionViewDragDelegate and UICollectionViewDropDelegate to support Drag and Drop in UICollectionView.
 2. Reordering cells in UICollectionView.
 3. Controlling drag speed while reordering - reorderingCadence.
