@@ -30,4 +30,6 @@ The project describes Drag and Drop using 2 UICollectionViews and supports:
 2. Copying an element from 1st Collection View to 2nd CollectionView at a particular destination indexpath.
 3. Forbidding the movement(copying/moving) of an element from 2nd Collection View to 1st CollectionView. 
 
-#### Proper documentation is done in the project to let you understand how things work with Drag and Drop in UICollectionView.
+## Implementation Details
+
+#### <a href="https://medium.com/@p.gpt10/drag-it-drop-it-in-collection-table-ios-11-6bd28795b313">Here</a> you can find the complete implementation details of drag & drop in table view and collection view.
